@@ -262,7 +262,6 @@ Consistent with the limitations discussed in the accompanying paper:
 1. **Binary granularity only.** The dataset distinguishes humor vs. non-humor but does not differentiate between humor sub-types such as sarcasm, satire, or irony.
 2. **Annotation subjectivity.** Despite high inter-annotator agreement (Fleiss' Kappa = 0.82), humor interpretation remains implicitly subjective and culturally dependent, and some residual annotation ambiguity should be expected at the margins.
 3. **Text-only modality.** The dataset captures only textual humor and does not incorporate the multimodal information (images, audio, video) that frequently accompanies humor in memes and social media content more broadly.
-4. **Minor duplication.** A small number of duplicate/near-duplicate short instances remain (see [Section 8](#8-data-quality-and-validation)).
 
 ---
 
