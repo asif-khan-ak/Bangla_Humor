@@ -1,7 +1,5 @@
 # BH-Humor-BN: A Balanced Bengali Humor Detection Dataset
 
-**Companion dataset for:** *BanglaHumorBERT (BH-BERT): A Domain-Adaptive Transformer Approach to Context-Aware Humor Detection in Bengali Language Processing* (Springer, accepted)
-
 **Maintainer:** [Asif Khan](https://github.com/asif-khan-ak)
 **Repository:** `https://github.com/asif-khan-ak/Bangla_Humor`
 
