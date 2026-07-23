@@ -33,7 +33,7 @@
 
 ## 1. Overview
 
-This repository hosts the dataset introduced alongside **BanglaHumorBERT (BH-BERT)**, a two-stage domain-adaptive transformer framework for context-aware humor detection in the Bengali language. The dataset is a **manually annotated, binary-labeled, class-balanced collection of 8,400 Bengali text instances**, created to address the scarcity of dedicated humor-detection resources for Bengali — a low-resource language in which prior NLP work has concentrated mainly on sentiment analysis and sarcasm detection rather than humor as a distinct phenomenon.
+This repository hosts the dataset introduced alongside **BanglaHumorBERT (BH-BERT)**, a dual-stage domain-adaptive transformer framework for context-aware humor detection in the Bengali language. The dataset is a **manually annotated, binary-labeled, class-balanced collection of 8,400 Bengali text instances**, created to address the lack of dedicated humor-detection resources for Bengali — a low-resource language in which prior NLP work has concentrated mainly on sentiment analysis and sarcasm detection rather than humor as a distinct phenomenon.
 
 | | |
 |---|---|
@@ -52,7 +52,7 @@ This repository hosts the dataset introduced alongside **BanglaHumorBERT (BH-BER
 
 Humor detection in Bengali NLP has lagged behind related tasks such as sentiment analysis and sarcasm detection. Sarcasm is only one narrow slice of the broader phenomenon of humor, and models trained on sarcasm data do not transfer well to jokes, puns, one-liners, or general comedic text. Prior Bengali-language efforts in this space have relied on very small corpora (e.g., datasets on the order of 1,600 instances), which limits both statistical reliability and the ability of transformer models to learn robust humor-specific representations.
 
-This dataset was built specifically to close that gap: it is five times larger than the largest prior Bengali humor resource we are aware of, drawn from a diverse mix of real-world social platforms, and strictly balanced to avoid class-imbalance bias during model training.
+This dataset was developed to address this limitation. It is approximately five times larger than the largest previously available Bengali humor dataset, to the best of our knowledge. The data were collected from a diverse range of real-world social media platforms, and the dataset was carefully balanced to mitigate class imbalance and reduce potential bias during model training.
 
 ---
 
@@ -87,7 +87,7 @@ Each instance is a short, self-contained piece of real-world Bengali text — a 
 
 ## 5. Data Collection
 
-**Sources.** Data were collected from five widely used social media platforms: **YouTube, Facebook, Instagram, Reddit, and X (Twitter)**. This cross-platform strategy was deliberately chosen to capture how humor manifests differently across distinct communicative contexts and audience communities within Bengali digital spaces, rather than reflecting the style of any single platform.
+**Sources.** Data were collected from 5 vastly used social media platforms: **YouTube, Facebook, Reddit, Instagram, and X**. This cross-platform strategy was deliberately chosen to capture how humor manifests differently across distinct communicative contexts and audience communities within Bengali digital spaces, rather than reflecting the style of any single platform.
 
 **Collection method.** Instances were gathered through a combination of:
 - **Targeted keyword searches** for humor-indicative Bengali terms, phrases, and formats (jokes, puns, one-liners, meme text).
@@ -107,7 +107,7 @@ This design ensures the negative (non-humor) class is realistic and topically di
 All 8,400 instances were manually labeled by **three native Bengali speakers** with prior familiarity with Bengali social media language conventions and background in NLP-related annotation tasks.
 
 ### 6.2 Labeling scheme
-Each instance was assigned a single binary label:
+A single binary label was assigned to each instance:
 
 - **`y = 1` (Humor)** — the text is intended to amuse, and is recognized by annotators as a joke, pun, witty remark, one-liner, meme-style caption, or otherwise comedic statement, judged from its perceived communicative intent and contextual interpretation.
 - **`y = 0` (Non-Humor)** — the text is a straightforward, non-comedic statement: news, informational content, plain commentary, or everyday conversational text with no humorous intent.
@@ -123,7 +123,7 @@ Humor is inherently subjective and context-dependent — a statement that reads 
 Agreement across annotators was quantified using **Fleiss' Kappa**, yielding a score of **0.82**, which is generally interpreted as *strong* (almost-perfect) agreement. This indicates that, despite the subjective nature of humor, the annotation protocol produced highly consistent and reliable labels.
 
 ### 6.5 Class balancing
-After annotation, the dataset was curated down to an exactly balanced set: **4,200 humor** and **4,200 non-humor** instances. This was a deliberate design decision to eliminate class imbalance and reduce the risk of the downstream model developing a majority-class bias.
+Following the annotation process, the dataset was curated to achieve a perfectly balanced distribution, comprising **4,200** humor instances and **4,200** non-humor instances. This was a deliberate design decision to eliminate class imbalance and reduce the risk of the downstream model developing a majority-class bias.
 
 ### 6.6 What this dataset does *not* label
 Per the accompanying paper's stated limitations, this dataset supports only **binary** humor classification. It does **not** distinguish between different sub-types of humor (e.g., sarcasm, satire, irony, wordplay), and it is **text-only** — it does not include multimodal signals (images, audio, or video) that often accompany humor in memes or video content on social platforms. Researchers interested in humor sub-typing or multimodal humor should treat this as a foundational text resource rather than a complete solution.
@@ -206,7 +206,7 @@ The dataset is released close to its raw annotated form so that downstream users
 
 - Whitespace normalization
 - Duplicate removal (for the separate large unlabeled pretraining corpus used in domain-adaptive MLM pretraining — a distinct resource from this labeled dataset)
-- URL filtering and light noise cleaning, while preserving the original linguistic structure of the text
+- The preprocessing stage involved removing URLs and minor noise from the text without altering its original linguistic structure.
 - Tokenization to a maximum sequence length of 128 tokens (model-specific; not applied to the released raw text)
 
 All personally identifiable information was removed/anonymized during preprocessing prior to public release (see [Section 12](#12-ethical-considerations-and-privacy)).
@@ -244,7 +244,7 @@ The table below shows representative examples (with English translations for acc
 
 ## 12. Ethical Considerations and Privacy
 
-- **Anonymization:** All collected data were anonymized during preprocessing prior to public release. Usernames, handles, and other personally identifiable information tied to the original social media posts were removed.
+- **Anonymization:** Each and every collected data were anonymized during preprocessing prior to public release. Usernames, handles, and other personally identifiable information tied to the original social media posts were removed.
 - **Public availability of source content:** Instances were drawn from publicly accessible posts, comments, and captions on the listed platforms.
 - **Subjectivity of humor:** Because humor judgments are inherently subjective and culturally situated, the labels reflect the interpretation of the three annotators (with majority-vote resolution for ambiguous cases) rather than an objective ground truth. Users building on this dataset should be mindful that annotation reflects a specific cultural and linguistic community's sense of humor and may not generalize to all Bengali-speaking populations or dialectal variation.
 - **Intended use:** This dataset is intended for academic and research use in humor detection, computational pragmatics, and related Bengali/low-resource NLP research. It is not intended to be used as a sole basis for automated content moderation decisions without human oversight, given the inherent ambiguity of humor annotation.
