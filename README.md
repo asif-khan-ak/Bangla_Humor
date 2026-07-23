@@ -1,8 +1,8 @@
-# BH-BERT: A Balanced Bengali Humor Detection Dataset
+# BH-Humor-BN: A Balanced Bengali Humor Detection Dataset
 
 **Companion dataset for:** *BanglaHumorBERT (BH-BERT): A Domain-Adaptive Transformer Approach to Context-Aware Humor Detection in Bengali Language Processing* (Springer, accepted)
 
-**Owner:** [Asif Khan](https://github.com/asif-khan-ak)
+**Maintainer:** [Asif Khan](https://github.com/asif-khan-ak)
 **Repository:** `https://github.com/asif-khan-ak/Bangla_Humor`
 
 ---
@@ -60,13 +60,9 @@ This dataset was built specifically to close that gap: it is five times larger t
 
 ```
 .
-├── README.md                          # This file
-├── data/
-│   └── bh_humor_bn.xlsx                # Full dataset (8,400 labeled instances)
-├── figures/
-│   └── label_length_distribution.png   # Class balance & length-distribution plot
+├── README.md                           # This file
+├── bh_humor_bn.xlsx                    # Full dataset (8,400 labeled instances)
 ├── LICENSE                             # License terms (see Section 16)
-└── CITATION.cff                        # Citation metadata (optional, recommended)
 ```
 
 > Adjust file/folder names above to match what you actually upload — this structure is a suggested layout, not a requirement.
@@ -181,7 +177,7 @@ This confirms the dataset is a clean, monolingual Bengali-script resource with n
 
 ### 7.5 Visualization
 
- <img width="1650" height="630" alt="label_length_distribution" src="https://github.com/user-attachments/assets/d57d45a1-e4e9-4081-96f5-80b497afc153" />
+<img width="1650" height="630" alt="label_length_distribution" src="https://github.com/user-attachments/assets/e2373267-03e6-44bc-a4d3-44dae31af801" />
 
 *Left: word-length distribution by class. Right: class balance (4,200 vs. 4,200).*
 
@@ -196,9 +192,9 @@ The following checks were run against the released file as part of preparing thi
 | Missing values (`id`, `text`, `label`) | None — 0 missing across all 8,400 rows |
 | Label validity | All labels strictly in `{0, 1}` |
 | Class balance | Exactly 4,200 / 4,200 |
+| Exact duplicate text entries | 5 duplicate pairs found (10 rows total, ≈0.12% of the dataset) |
 | Non-Bengali character contamination | None detected (no Latin characters, no emoji) |
 | Empty or whitespace-only text | None |
-
 
 **Reliability validation.** Beyond automated checks, the primary quality safeguard for this dataset is human: **three independent annotators** labeled the data, ambiguous cases underwent a secondary review pass, and inter-annotator agreement was formally measured (Fleiss' Kappa = 0.82), rather than relying on a single annotator's judgment or heuristic/weak labeling.
 
@@ -237,18 +233,18 @@ The table below shows representative examples (with English translations for acc
 
 | ID | Bengali Text | English Translation | Label |
 |---|---|---|---|
-| 1001 | ছাগল টাইপ ছেলে, এদের সঙ্গে প্রেমে পড়লে জীবন হবে ঘাসময় | A goat-type guy — falling in love with them turns life into nothing but grass (trouble). | 1 (Humor) |
-| 1740 | যখন পরিবর্তন আসে, তখন একদল মানুষ পোশাক পরিবর্তন করে, আর অন্যদল পরিবর্তন করে চেহারা | When change comes, some people change their clothes, while others change their faces. | 0 (Non-Humor) |
-| 979 | আগের মানুষ কত সহজ-সরল ছিলো, মোবাইল আসায় সব শেষ | People in the past were so simple; everything changed once mobile phones arrived. | 0 (Non-Humor) |
-| 4873 | যারা যারা ধৈর্য্যের ফল খেয়েছেন, তারা প্লিজ রিভিউ দিয়ে যান, কেমন খেতে | Those who've tasted the fruit of patience — please leave a review on how it tastes. | 1 (Humor) |
+| 267 | ভিডিও দেখার আগেই হাহা দেই, কারণ হাসতে হাসতে যদি রিয়াক্ট দিতে ভুলে যাই | I hit "haha" before I've even watched the video, in case I laugh too hard to remember to react at all. | 1 (Humor) |
+| 2985 | সবাই একই জীবন পায়, কিন্তু তা যাপনের ধরণ ভিন্ন | Everyone gets the same life; it's just lived differently. | 0 (Non-Humor) |
+| 1843 | নিজেকে কখনো খারাপ ভাববেন না, সেটা ভাবার জন্য প্রতিবেশী আছে | Never think badly of yourself — that's what neighbors are for. | 1 (Humor) |
+| 5343 | আমি অনেক মনোযোগ দিয়ে দেখছি, এই ঈদে আমার মনে হয়েছে এটাই বেস্ট নাটক | I've been watching closely, and this Eid, this felt like the best drama yet. | 0 (Non-Humor) |
 
-*(Translations are provided for reader accessibility; the released dataset itself contains only the original Bengali text and label — no translation column.)*
+*(Translations are provided for reader accessibility; the released dataset itself contains only the original Bengali text and label — no translation column. These four rows are illustrative samples distinct from the qualitative examples reported in the accompanying paper.)*
 
 ---
 
 ## 12. Ethical Considerations and Privacy
 
-- **Anonymization:** All collected data was anonymized during preprocessing prior to public release. Usernames, handles, and other personally identifiable information tied to the original social media posts were removed.
+- **Anonymization:** All collected data were anonymized during preprocessing prior to public release. Usernames, handles, and other personally identifiable information tied to the original social media posts were removed.
 - **Public availability of source content:** Instances were drawn from publicly accessible posts, comments, and captions on the listed platforms.
 - **Subjectivity of humor:** Because humor judgments are inherently subjective and culturally situated, the labels reflect the interpretation of the three annotators (with majority-vote resolution for ambiguous cases) rather than an objective ground truth. Users building on this dataset should be mindful that annotation reflects a specific cultural and linguistic community's sense of humor and may not generalize to all Bengali-speaking populations or dialectal variation.
 - **Intended use:** This dataset is intended for academic and research use in humor detection, computational pragmatics, and related Bengali/low-resource NLP research. It is not intended to be used as a sole basis for automated content moderation decisions without human oversight, given the inherent ambiguity of humor annotation.
@@ -309,7 +305,7 @@ df = pd.read_csv("data/bh_humor_bn.csv", encoding="utf-8")
 
 ## 16. License
 
-*MIT License*
+MIT License.
 
 ---
 
@@ -322,7 +318,7 @@ If you use this dataset, please cite the accompanying paper:
   title     = {BanglaHumorBERT (BH-BERT): A Domain-Adaptive Transformer Approach to
                Context-Aware Humor Detection in Bengali Language Processing},
   author    = {MD. ABDUL KAIUM SHOHUG, Asif Khan, Munna Dhar, Aditi Tasmin},
-  booktitle = {Proceedings of <Conference Name>},
+  booktitle = {Springer Nature Book Series: Lecture Notes in Networks and Systems (LNNS)},
   publisher = {Springer},
   year      = {2026}
 }
@@ -336,12 +332,10 @@ If you use this dataset, please cite the accompanying paper:
 
 | Version | Date | Notes |
 |---|---|---|
-| 1.0 | <release date> | Initial public release: 8,400 labeled Bengali instances (4,200 Humor / 4,200 Non-Humor) |
+| 1.0 | 23/07/2026 | Initial public release: 8,400 labeled Bengali instances (4,200 Humor / 4,200 Non-Humor) |
 
 ---
 
 ## 19. Contact
 
 For questions, corrections, or collaboration inquiries regarding this dataset, please open an issue on this repository or contact the maintainer via [GitHub](https://github.com/asif-khan-ak).
-
-
